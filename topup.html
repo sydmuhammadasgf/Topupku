@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TopUpKu – Top Up Game Cepat & Murah</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f5f6fa;--card:#fff;--tx:#14161f;--mu:#6a7085;--ac:#5b5bf0;--ac2:#fff;--bd:#e3e5ee;--ok:#12a150;--wr:#d98a00;--er:#d92d2d}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1117;--card:#181b25;--tx:#eef0f7;--mu:#98a0b8;--ac:#7c7cff;--ac2:#0f1117;--bd:#2a2e3d;--ok:#3ecf7b;--wr:#f0b030;--er:#ff6b6b}}
+:root[data-theme="dark"]{--bg:#0f1117;--card:#181b25;--tx:#eef0f7;--mu:#98a0b8;--ac:#7c7cff;--ac2:#0f1117;--bd:#2a2e3d;--ok:#3ecf7b;--wr:#f0b030;--er:#ff6b6b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--card);border-bottom:1px solid var(--bd);z-index:5}
+nav{max-width:960px;margin:auto;display:flex;gap:4px;align-items:center;padding:10px 14px;overflow-x:auto}
+nav b{font-size:18px;margin-right:10px;white-space:nowrap;color:var(--ac)}nav a{padding:6px 10px;border-radius:8px;color:var(--mu);text-decoration:none;white-space:nowrap;font-size:14px}nav a.on{background:var(--ac);color:var(--ac2)}
+main{max-width:960px;margin:auto;padding:16px 14px 60px}
+h1{font-size:24px;margin:8px 0}h2{font-size:18px;margin:22px 0 10px}
+.hero{background:linear-gradient(135deg,var(--ac),#9b5bf0);color:#fff;border-radius:16px;padding:22px}.hero p{opacity:.9;margin:6px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px}
+a.g{display:block;text-decoration:none;color:inherit;text-align:center}a.g:hover{border-color:var(--ac)}
+.logo{width:72px;height:72px;border-radius:16px;margin:4px auto 8px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:24px;overflow:hidden}.logo img{width:100%;height:100%;object-fit:cover}
+.pr{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.opt{border:2px solid var(--bd);border-radius:12px;padding:10px;cursor:pointer;background:var(--card)}.opt.s{border-color:var(--ac)}.opt small{color:var(--mu);display:block}
+input,select{width:100%;padding:11px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font:inherit;margin:4px 0 10px}
+button{background:var(--ac);color:var(--ac2);border:0;border-radius:10px;padding:11px 16px;font:inherit;font-weight:600;cursor:pointer}button.sm{padding:5px 10px;font-size:13px}button.gh{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;background:var(--bd)}.ok{color:var(--ok)}.wr{color:var(--wr)}.er{color:var(--er)}
+.tbl{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}td,th{padding:7px;border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap}
+.mu{color:var(--mu)}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+footer{text-align:center;color:var(--mu);font-size:13px;padding:20px}
+</style></head><body>
+<header><nav id="nav"></nav></header><main id="app"></main>
+<footer>© TopUpKu · Semua merek &amp; logo adalah milik pemegang hak masing-masing.</footer>
+<script>
+const IDR=n=>'Rp'+Number(n).toLocaleString('id-ID');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const mk=(u,a)=>a.map(([q,p])=>[q+' '+u,p]);
+const DEF=[
+{id:'ml',n:'Mobile Legends',c:'#2a6df4',i:'ML',f:'User ID + Zone ID',p:mk('Diamonds',[[86,22000],[172,44000],[257,66000],[514,130000]])},
+{id:'roblox',n:'Roblox',c:'#e23c3c',i:'RB',f:'Username Roblox',p:mk('Robux',[[80,16000],[400,79000],[800,155000],[1700,320000]])},
+{id:'ff',n:'Free Fire',c:'#f08a00',i:'FF',f:'Player ID',p:mk('Diamonds',[[70,10000],[140,20000],[355,50000],[720,100000]])},
+{id:'valorant',n:'Valorant',c:'#e8344d',i:'VL',f:'Riot ID + Tagline',p:mk('VP',[[475,59000],[1000,119000],[2050,239000],[3650,419000]])},
+{id:'wt',n:'War Thunder',c:'#5f7a3a',i:'WT',f:'Email akun',p:mk('Golden Eagles',[[1000,150000],[2500,350000],[5000,690000],[10000,1350000]])},
+{id:'pubgm',n:'PUBG Mobile',c:'#c98a1b',i:'PM',f:'Player ID',p:mk('UC',[[60,15000],[325,75000],[660,150000],[1800,380000]])},
+{id:'genshin',n:'Genshin Impact',c:'#4aa3c9',i:'GI',f:'UID + Server',p:mk('Genesis Crystals',[[60,16000],[300,79000],[980,249000],[1980,499000]])},
+{id:'codm',n:'Call of Duty Mobile',c:'#4b4f57',i:'CD',f:'Open ID',p:mk('CP',[[80,15000],[420,75000],[880,150000],[2400,380000]])},
+{id:'hok',n:'Honor of Kings',c:'#d4a017',i:'HK',f:'Player ID',p:mk('Tokens',[[80,15000],[400,75000],[800,150000],[1600,300000]])},
+{id:'coc',n:'Clash of Clans',c:'#6a9a2b',i:'CC',f:'Player Tag',p:mk('Gems',[[500,99000],[1200,229000],[2500,459000],[6500,1099000]])}];
+const PAY=['QRIS','DANA','OVO','GoPay','Virtual Account BCA','Alfamart'];
+let db=null,user=null,assets=null,isOwner=false,games=[],orders={},neworders=[],ov={};
+const $=s=>document.querySelector(s);
+const merged=()=>DEF.map(d=>({...d,...(ov[d.id]||{})}));
+const gl=(g,sz)=>`<div class="logo" style="background:${esc(g.c)};${sz?`width:${sz}px;height:${sz}px`:''}">${g.logo?`<img src="${esc(g.logo)}" alt="Logo ${esc(g.n)}">`:esc(g.i)}</div>`;
+const pages={
+ home(){const gs=merged().filter(g=>!g.off);return `<div class="hero"><h1>Top Up Game Instan 24/7</h1><p>Proses otomatis, harga bersaing, pembayaran lengkap.</p></div>
+ <h2>Pilih Game</h2><div class="grid">${gs.map(g=>`<a class="card g" href="#g-${g.id}">${gl(g)}<b>${esc(g.n)}</b></a>`).join('')}</div>
+ <h2>Kenapa TopUpKu?</h2><div class="grid"><div class="card">⚡ Otomatis<br><span class="mu">Masuk dalam hitungan detik</span></div><div class="card">🔒 Aman<br><span class="mu">Tanpa minta password</span></div><div class="card">💬 CS Responsif<br><span class="mu">Via WhatsApp</span></div><div class="card">🏷️ Harga Murah<br><span class="mu">Update harian</span></div></div>`},
+ track(){return `<h1>Lacak Pesanan</h1><div class="card"><input id="inv" placeholder="Nomor invoice, mis. INV-AB12CD34"><button onclick="trk()">Cek Status</button><div id="trr" style="margin-top:12px"></div></div>`},
+ membership(){return `<h1>Membership</h1><div class="grid"><div class="card"><b>Member</b><p class="mu">Harga normal, riwayat pesanan.</p></div><div class="card"><b>Gold</b><p class="mu">Diskon 1% tiap transaksi.</p></div><div class="card"><b>Reseller</b><p class="mu">Harga khusus volume besar.</p></div></div><p class="mu">Fitur member penuh (login &amp; saldo deposit) masuk Fase 2.</p>`},
+ faq(){const q=[['Berapa lama proses?','Umumnya kurang dari 1 menit setelah pembayaran terkonfirmasi.'],['Apakah perlu password akun?','Tidak. Kami hanya meminta ID/username game.'],['Bagaimana jika salah ID?','Item tidak dapat ditarik. Pastikan ID benar sebelum membayar.'],['Pesanan gagal?','Hubungi CS lewat halaman Kontak dengan nomor invoice.']];return `<h1>FAQ</h1>`+q.map(([a,b])=>`<div class="card" style="margin-bottom:8px"><b>${a}</b><p class="mu" style="margin:4px 0 0">${b}</p></div>`).join('')},
+ about(){return `<h1>Tentang Kami</h1><div class="card"><p>TopUpKu adalah layanan top up game otomatis dengan fokus harga kompetitif dan transaksi yang transparan.</p><p class="mu">Ganti teks ini dengan profil usaha Anda (nama, legalitas, alamat).</p></div><h2>Syarat &amp; Ketentuan · Privasi · Refund</h2><div class="card mu">Isi kebijakan resmi Anda di sini sebelum peluncuran.</div>`},
+ contact(){return `<h1>Kontak</h1><div class="card"><p>WhatsApp: <b>ganti-nomor-Anda</b></p><p>Email: <b>cs@domain-anda.com</b></p><p class="mu">Jam layanan: setiap hari 08.00–22.00 WIB.</p></div>`},
+};
+function game(id){const g=merged().find(x=>x.id===id);if(!g)return pages.home();
+ window.sel={g,p:null};
+ return `<div class="row">${gl(g,56)}<div><h1 style="margin:0">${esc(g.n)}</h1><span class="mu">Top up instan</span></div></div>
+ <div class="card" style="margin-top:14px"><b>1. Masukkan data akun</b><input id="uid" placeholder="${esc(g.f)}" autocomplete="off"></div>
+ <div class="card" style="margin-top:10px"><b>2. Pilih nominal</b><div class="pr" style="margin-top:8px">${g.p.map((x,i)=>`<div class="opt" id="o${i}" onclick="pick(${i})">${esc(x[0])}<small>${IDR(x[1])}</small></div>`).join('')}</div></div>
+ <div class="card" style="margin-top:10px"><b>3. Pembayaran &amp; kontak</b><select id="pay">${PAY.map(p=>`<option>${p}</option>`).join('')}</select><input id="wa" inputmode="tel" placeholder="Nomor WhatsApp (untuk notifikasi)"><div id="tot" class="mu">Pilih nominal dulu</div><button style="margin-top:10px;width:100%" onclick="buy()">Beli Sekarang</button><div id="msg" style="margin-top:10px"></div></div>`}
+function pick(i){sel.p=i;document.querySelectorAll('.opt').forEach((e,j)=>e.classList.toggle('s',i===j));const x=sel.g.p[i];$('#tot').innerHTML=`Total: <b>${IDR(x[1])}</b> <span class="mu">(${esc(x[0])})</span>`}
+async function buy(){const m=$('#msg'),uid=$('#uid').value.trim(),wa=$('#wa').value.trim();
+ if(!uid||sel.p==null||wa.length<8){m.innerHTML='<span class="er">Lengkapi ID, nominal, dan nomor WhatsApp.</span>';return}
+ if(!db||!user){m.innerHTML='<span class="er">Database belum tersambung (perlu login claude.ai). Coba muat ulang.</span>';return}
+ const x=sel.g.p[sel.p],id='INV-'+Math.random().toString(36).slice(2,10).toUpperCase();
+ try{const me=await user.id(),ref=db.doc('neworders/'+me),old=(await ref.get()).data()||{};await ref.set({...old,[id]:{id,game:sel.g.n,gid:sel.g.id,item:x[0],total:x[1],uid,wa,pay:$('#pay').value,t:Date.now()}});
+ m.innerHTML=`<div class="card"><b class="ok">Pesanan dibuat ✓</b><p>Invoice: <b>${id}</b> — simpan untuk melacak.</p><p class="mu">Bayar ${IDR(x[1])} via ${esc($('#pay').value)}. (Instruksi pembayaran otomatis tersedia setelah payment gateway dihubungkan.)</p></div>`}
+ catch(e){m.innerHTML='<span class="er">Gagal menyimpan pesanan: '+esc(e.message||e.code)+'</span>'}}
+async function trk(){const id=$('#inv').value.trim().toUpperCase(),r=$('#trr');if(!db){r.textContent='Database belum tersambung.';return}
+ try{const s=await db.doc('orders/'+id).get();if(s.exists){const o=s.data();r.innerHTML=`<b>${esc(id)}</b><br>${esc(o.game)} · ${esc(o.item)}<br>Status: <b class="${o.status==='Sukses'?'ok':o.status==='Gagal'?'er':'wr'}">${esc(o.status)}</b>`}
+ else{r.innerHTML=/^INV-[A-Z0-9]{8}$/.test(id)?`<b>${esc(id)}</b><br>Status: <b class="wr">Menunggu pembayaran / verifikasi admin</b>`:'Format invoice tidak valid.'}}catch(e){r.textContent='Gagal: '+(e.message||e.code)}}
+function admin(){if(!isOwner)return `<h1>Admin</h1><div class="card">Halaman ini hanya untuk pemilik. Masuk ke claude.ai sebagai pemilik artifact.</div>`;
+ const all=neworders.slice().sort((a,b)=>b.t-a.t);
+ return `<h1>Dashboard Admin</h1><div class="grid"><div class="card">Pesanan<br><b>${all.length}</b></div><div class="card">Sukses<br><b class="ok">${all.filter(o=>(orders[o.id]||{}).status==='Sukses').length}</b></div><div class="card">Omzet sukses<br><b>${IDR(all.filter(o=>(orders[o.id]||{}).status==='Sukses').reduce((s,o)=>s+o.total,0))}</b></div></div>
+ <h2>Pesanan</h2><div class="card tbl"><table><tr><th>Invoice</th><th>Game</th><th>Item</th><th>ID</th><th>WA</th><th>Total</th><th>Status</th></tr>${all.map(o=>{const st=(orders[o.id]||{}).status||'Menunggu';return `<tr><td>${esc(o.id)}</td><td>${esc(o.game)}</td><td>${esc(o.item)}</td><td>${esc(o.uid)}</td><td><a href="https://wa.me/${esc(o.wa.replace(/\D/g,''))}" style="color:var(--ac)">${esc(o.wa)}</a></td><td>${IDR(o.total)}</td><td><select style="margin:0;padding:4px" onchange="setSt('${esc(o.id)}',this.value)">${['Menunggu','Dibayar','Diproses','Sukses','Gagal'].map(s=>`<option ${s===st?'selected':''}>${s}</option>`).join('')}</select></td></tr>`}).join('')||'<tr><td colspan=7 class="mu">Belum ada pesanan.</td></tr>'}</table></div>
+ <h2>Game, Logo &amp; Harga</h2>${merged().map(g=>`<div class="card" style="margin-bottom:8px"><div class="row">${gl(g,44)}<b>${esc(g.n)}</b><label class="row mu"><input type="checkbox" style="width:auto;margin:0" ${g.off?'':'checked'} onchange="svG('${g.id}',{off:!this.checked})">Tampil</label>${assets?`<button class="sm gh" onclick="upLogo('${g.id}')">Upload logo</button>`:''}</div><div class="pr" style="margin-top:8px">${g.p.map((x,i)=>`<div><small class="mu">${esc(x[0])}</small><input type="number" value="${x[1]}" style="margin:2px 0" onchange="svP('${g.id}',${i},this.value)"></div>`).join('')}</div></div>`).join('')}`}
+async function setSt(id,s){try{await db.doc('orders/'+id).set({status:s,game:(neworders.find(o=>o.id===id)||{}).game,item:(neworders.find(o=>o.id===id)||{}).item,t:Date.now()})}catch(e){alert('Gagal: '+(e.message||e.code))}}
+async function svG(id,patch){try{await db.doc('games/'+id).set({...(ov[id]||{}),...patch})}catch(e){alert('Gagal: '+(e.message||e.code))}}
+function svP(id,i,v){const g=merged().find(x=>x.id===id);const p=g.p.map(x=>x.slice());p[i][1]=Math.max(0,+v||0);svG(id,{p})}
+function upLogo(id){const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=async()=>{try{const r=await assets.upload(f.files[0]);svG(id,{logo:r.url})}catch(e){alert('Upload gagal: '+(e.message||e.code))}};f.click()}
+function render(){const h=(location.hash||'#home').slice(1),el=$('#app');
+ const nav=[['home','Beranda'],['track','Lacak'],['membership','Member'],['faq','FAQ'],['about','Tentang'],['contact','Kontak']].concat(isOwner?[['admin','Admin']]:[]);
+ $('#nav').innerHTML='<b>TopUpKu</b>'+nav.map(([k,v])=>`<a href="#${k}" class="${h===k||(k==='home'&&h.startsWith('g-'))?'on':''}">${v}</a>`).join('');
+ const act=document.activeElement;if(act&&(act.tagName==='INPUT'||act.tagName==='SELECT'))return;
+ el.innerHTML=h.startsWith('g-')?game(h.slice(2)):h==='admin'?admin():(pages[h]||pages.home)();}
+addEventListener('hashchange',()=>{document.activeElement&&document.activeElement.blur();render();scrollTo(0,0)});
+render();
+(async()=>{try{user=await claude.use('user');isOwner=user?user.isOwner():false}catch(e){}
+ try{assets=await claude.use('assets')}catch(e){}
+ try{db=await claude.use('db')}catch(e){}
+ if(db){db.collection('games').onSnapshot(s=>{ov={};s.docs.forEach(d=>ov[d.id]=d.data());render()},()=>{});
+  db.collection('orders').onSnapshot(s=>{orders={};s.docs.forEach(d=>orders[d.id]=d.data());render()},()=>{});
+  if(isOwner)db.collection('neworders').onSnapshot(s=>{neworders=s.docs.flatMap(d=>Object.values(d.data()));render()},()=>{})}
+ render()})();
+</script></body></html>
